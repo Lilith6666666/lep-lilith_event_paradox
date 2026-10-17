@@ -1,0 +1,171 @@
+LEP: Lilith Event Paradox v0.6 — Event Semantics
+================================================
+Release implementation report — 17 October 2026
+
+IMPLEMENTED
+-----------
+Public brand: LEP: Lilith Event Paradox. Stable APIs remain EP_START,
+EP_CHAPTERS, EP_EVENTS, EP_* helpers, state.eventParadox and /ep.
+Legacy config sentinel/Type and old console artifact cleanup remain supported.
+Existing user config Entries and adventure progress are not reset or rewritten.
+
+New optional event fields:
+  role: normal (default), milestone, chapterEnd
+  queue: false (default), true for once-only Normal events
+  exclusiveGroup: optional safe 1..64-character event-style ID
+Existing display adds silent; append remains the default.
+All valid v0.5 event definitions remain supported, including normal nextChapter,
+repeating cooldowns, narrative time/anchors/timeSkip, entities and Inner Self.
+
+PERSISTENCE
+-----------
+Persistent schema version stays 1. New fields under state.eventParadox:
+  pendingEvents: [{ id, armedTurn, armedChapter }]
+  exclusiveGroups: { group_id: winner_event_id }
+No full definitions/prose are saved as pending data. Pending caps are 256 entries
+AND 32768 serialized characters. Group caps are 1024 entries AND 140000 serialized
+characters. Missing fields read as empty without migration on read-only calls.
+Mutable access/commit adds defaults. Older checkpoints restore empty semantic
+state rather than retaining future pending entries/group winners. Corrupt
+present fields fail closed without resetting canon.
+
+EXACT SCHEDULER
+---------------
+Ordinary successful enabled Output:
+A. Prepare one turn/manualSet; prune stale pending IDs; arm fully eligible
+   Milestone, Chapter End and queued Normal events.
+B. Select at most one visible event. Deliverable pending visible candidates
+   block ordinary visible candidates. Priority descending, then definition
+   order, decides within each set. Failed pending transactions do not permit
+   ordinary visible fallthrough.
+C. Evaluate/arm newly triggered SILENT latches against post-visible state.
+D. Prefer deliverable pending silent candidates, otherwise ordinary eligible
+   silent candidates; same priority/order. Commit at most one.
+Finalize both phases with one checkpoint/receipt. Unexpected background failure
+retains the valid visible working state. A silent event cannot trigger a second
+same-cycle silent commit or a new same-cycle visible selection. Both committed
+IDs and completions are recorded internally. Retry never reapplies the cycle.
+No special chapterEnd > milestone > queued hierarchy is introduced.
+
+PENDING / GROUPS
+----------------
+A latch arms once fully eligible by existing chapter/turn/when mechanisms.
+Later delivery ignores old when/minTurns/minChapterTurns, but still requires
+valid current definition, enabled state, compatible chapter, completion capacity
+and no different exclusive-group winner. Wrong chapter/disabled definition
+keeps it dormant. Missing/invalid/no-longer-latching IDs prune on ordinary play.
+There is no cancellation, expiry or group reset/scoping API.
+
+The first successful exclusive-group member atomically records the winner and
+cancels losing pending members. Other members remain closed across chapters,
+new conditions and Retry. It is at-most-one, not a guarantee of an outcome.
+Bounded Undo restores earlier canon, including earlier group/pending state.
+testEvent never arms/resolves. forceEvent bypasses ordinary gates but rejects
+another winner; successful unresolved force resolves the group and clears its
+pending entry. Deliberately forcing the same winning ID remains permitted by
+the existing force policy. Legacy configuration-card commands obey this too.
+
+SILENT / CHAPTER END VALIDATION
+-------------------------------
+Silent text may be absent/empty or bounded creator metadata. It is not rendered,
+interpolated or injected into normal Context/memory. Silent log entries are
+excluded from journal cards; no silent character memory mirror is created.
+Silent definitions cannot use nextChapter, memory, timeAdvance or chapterEnd.
+A private Time Anchor requires explicit context:false. A set/nonzero arithmetic
+effect, group resolution or private anchor is required to avoid no-op completion
+spam. Plain silent Normal repeats retain the normal cooldown policy. Silent
+forces/previews return non-story status, never the silent Scene prose.
+
+Milestone: once-only; queue and cooldownTurns must be omitted.
+Queued Normal: once-only; no cooldownTurns.
+Chapter End: once-only, visible, one specific source chapter (string or one-ID
+array), known nextChapter; queue/cooldownTurns must be omitted. It uses the
+existing transition/effect/memory/time/announcement path. Same-destination
+behavior remains the existing no-reset/no-entry-time policy.
+Exclusive groups require once-only membership and safe bounded IDs.
+
+TOOLING / DOCUMENTATION / BRANDING
+----------------------------------
+inspect now includes role/display/queue/group/winner, pending metadata, ordinary
+eligibility and pending deliverability/reasons. status adds pending total,
+visible/silent and group-resolution counts; completion count covers both phases.
+Commands stay bounded, read-only while paused and outside model narrative.
+New screens are [LEP Console]; both old and new screens/markers are filtered.
+New human config heading/title uses the full LEP name; legacy machine Type and
+sentinel remain unchanged. The creator-guide legacy filename is intentional.
+
+Author Toolkit now contains:
+  LEP_AI_Authoring_Spec.txt
+  LEP_Author_Workbook.txt
+  LEP_Author_Toolkit_Examples.txt
+  LEP_Skill_Builder_Guide.txt
+The available toolkit assets still targeted v0.4; they were brought forward
+against the actual v0.5 runtime and v0.6 contract, preserving event-first then
+chapters-second design. Five complete examples validate and execute: prom
+Milestone variants, breakup/silent consequence/discovery, Chapter End routes,
+queued confrontation, ordinary exclusive outcomes. Time Anchor terminology is
+separate from Milestone Event. No relationships/groups/roles are inferred.
+
+LEP Builder is distributed as Author Toolkit/lep-builder and
+Author Toolkit/LEP_Builder_Skill.zip. Its entrypoint, UI metadata and manifest
+point to v0.6. Repository references link to maintained sources; ZIP references
+are generated portable snapshots, not independently authoritative contracts.
+No globally installed skill or original external toolkit files were changed.
+
+Creator Story Cards, registered entities, authored memory mirrors and optional
+automatically created/updated world cards are documented separately.
+autoCardsEnabled still defaults false and controls automatic discovery/creation/
+updates. Creator Character/Location cards still register when it is false.
+autoCharacterCards remains separate. Inner Self is optional and functional;
+LEP remains the sole Auto-Cards/entity provider. Inner Self's second installer
+remains removed. Its v0.5 derivative required no functional compatibility patch;
+only LEP-owned guide/comment branding changed. Pinned source and exact licenses
+remain intact in THIRD_PARTY_NOTICES and the bundled derivative.
+
+FILES
+-----
+Updated:
+  Library.js; Library_Missing_Stage_Key.js (synchronized complete installs)
+  Input.js; Context.js; Output.js
+  README.txt; EventParadox_Events_Creator.txt; MANUAL_TEST_CHECKLIST.txt
+  configuration.story-cards.json; events.example.js
+  tests/run-tests.js; tests/fixtures/missing-stage-key.js
+  THIRD_PARTY_NOTICES.txt
+  vendor/inner-self/InnerSelf.ep.js; EP-integration.patch; UPSTREAM.json
+Added:
+  This release report
+  Author Toolkit/LEP_AI_Authoring_Spec.txt
+  Author Toolkit/LEP_Author_Workbook.txt
+  Author Toolkit/LEP_Author_Toolkit_Examples.txt
+  Author Toolkit/LEP_Skill_Builder_Guide.txt
+  Author Toolkit/LEP_Builder_Skill.zip
+  Author Toolkit/lep-builder/SKILL.md; MANIFEST.txt; agents/openai.yaml
+  Five linked specification/example/runtime/creator/template resources
+Canonical Missing Stage Key event prose and normal-event behavior are preserved;
+its human description/comment branding now uses LEP.
+
+VERIFICATION / LIMITS
+---------------------
+Baseline before edits: 276/276 v0.5 offline Node tests.
+Final: 358/358 offline tests (276 retained regression cases + 82 v0.6 cases).
+All 10 JavaScript files pass node --check.
+Skill/reference links, YAML metadata, ZIP integrity and synchronized generated
+references validated. The system Python skill validator lacks PyYAML; YAML was
+parsed independently with Ruby's standard YAML library and references/examples
+were checked/exercised with the runtime tests.
+Both full Libraries match; exact pinned Inner Self license and source provenance
+remain verified. No second Auto-Cards loop or runtime package/network dependency.
+
+Live AI Dungeon testing is still REQUIRED and was not performed. The manual
+checklist covers upgrades, every role/display/group combination, Retry/Undo,
+Inner Self on/off, automatic cards on/off and registered Character references.
+Host history/rollback/card snapshots and model behavior can differ from offline
+mocks. Existing six-checkpoint Undo/Retry limits and upstream brain rollback
+limits remain. Disabled/wrong-chapter pending events can remain dormant forever;
+exhaustive group branches remain the creator's responsibility. A model may
+independently guess hidden facts; LEP guarantees no silent disclosure through
+its own prose/memory/journal/anchor Context paths, not model omniscience control.
+
+Time Paradox, narrative-time due gates, deadlines, expiry, event windows,
+onExpire, calendar scheduling, automatic narrative clocks, prose interpretation,
+Optimized Context compatibility and unlimited silent cascades are NOT included.

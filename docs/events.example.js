@@ -1,4 +1,4 @@
-/* Event Paradox v0.4 — The Missing Stage Key, supplied fixture.
+/* LEP: Lilith Event Paradox v0.6 — The Missing Stage Key, v0.4-compatible fixture.
  * AI Dungeon does not load this file. Library.js already contains these definitions.
  * To restore them, copy the entire BEGIN/END block into Library, including markers.
  * Start a NEW adventure after changing EP_START; existing progress is preserved.
@@ -67,7 +67,7 @@ var EP_CHAPTERS = {
   },
   free_roam: {
     title: "A New Day",
-    description: "The scripted test arc is complete. School-festival play may continue freely without further authored Event Paradox events.",
+    description: "The scripted test arc is complete. School-festival play may continue freely without further authored LEP events.",
     announce: true,
     opening: "The next morning, the successful festival is already becoming a favorite memory.",
     timeAdvance: { days: 1 }
