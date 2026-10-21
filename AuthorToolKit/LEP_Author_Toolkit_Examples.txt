@@ -1,8 +1,8 @@
 LEP: Lilith Event Paradox — LEP Author Toolkit
 WORKED EXAMPLES & AI PROMPTS
 ============================
-Compatibility: LEP v0.6
-Examples version: 0.6
+Compatibility: LEP v0.6.1
+Examples version: 0.6.1
 
 PURPOSE
 -------
@@ -12,7 +12,7 @@ This file shows how Human Workbook ideas should translate into LEP.
 It is useful for:
 - human creators learning the workbook format;
 - AI models/Skills as few-shot examples;
-- checking whether generated EP output matches creator intent.
+- checking whether generated LEP output matches creator intent.
 
 This file does not replace the AI Authoring Specification.
 
@@ -36,7 +36,7 @@ After chapter turns:
 Output:
 Append
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 {
@@ -85,7 +85,7 @@ That evening, Alex finally gets a quiet moment alone in his new room.
 COMPILED IDEA
 -------------
 
-EP_START includes:
+LEP_START includes:
 
 variables: {
   welcomed: false,
@@ -124,7 +124,7 @@ First Quiet Evening:
 WHY
 ---
 The human explicitly requested an event dependency.
-EP does not normally expose completed event IDs as creator-variable conditions,
+LEP does not normally expose completed event IDs as creator-variable conditions,
 so the AI compiler added one small technical progress flag.
 
 It did NOT invent new story content.
@@ -183,7 +183,7 @@ Recovery
 Output:
 Replace
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 {
@@ -324,7 +324,7 @@ Three months later, life has found a new rhythm.
 Chapter time jump:
 3 months
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 new_routine: {
@@ -376,7 +376,7 @@ Whole story
 Memory slot:
 family
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 {
@@ -439,7 +439,7 @@ Whole story
 Dynamic character memory path:
 relationship.partner
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 {
@@ -486,7 +486,7 @@ No
 Events in this chapter:
 [none]
 
-COMPILED EP
+COMPILED LEP
 -----------
 
 free_roam: "The scripted arc is complete. The story can continue freely."
@@ -497,13 +497,13 @@ A chapter does not need an event.
 No fake finale or exit event is invented.
 
 ======================================================================
-EXAMPLE 9 — MANUAL /ep timeSkip
+EXAMPLE 9 — MANUAL /lep timeSkip
 ======================================================================
 
 PLAYER DO ACTION
 ----------------
 
-/ep timeSkip = 3mo,2d,6h;Three months pass. Alex knows the neighborhood now; the route to school feels automatic.
+/lep timeSkip = 3mo,2d,6h;Three months pass. Alex knows the neighborhood now; the route to school feels automatic.
 
 RESULT
 ------
@@ -511,13 +511,13 @@ RESULT
 LEP:
 - advances the authoritative timeline by 3 months, 2 days, 6 hours;
 - keeps the current chapter;
-- does not count as a normal EP story turn;
+- does not count as a normal LEP story turn;
 - does not fire an event;
 - does not change creator paths;
 - does not create memory or a Time Anchor;
 - returns everything after the first semicolon as canonical story prose.
 
-This command is NOT placed in EP_EVENTS.
+This command is NOT placed in LEP_EVENTS.
 
 ======================================================================
 EXAMPLE 10 — COMPLETE WORKBOOK TO COMPLETE DEFINITIONS
@@ -629,7 +629,7 @@ COMPILED DEFINITIONS
 
 // BEGIN EVENT DEFINITIONS — EDIT HERE
 
-var EP_START = {
+var LEP_START = {
   chapter: "arrival",
   variables: {
     welcomed: false,
@@ -639,7 +639,7 @@ var EP_START = {
   }
 };
 
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   arrival: "Alex is meeting the Miller family for the first time.",
   routine: {
     title: "ACT II — A NEW ROUTINE",
@@ -650,7 +650,7 @@ var EP_CHAPTERS = {
   }
 };
 
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     id: "welcome_home",
     title: "Welcome Home",
@@ -723,7 +723,7 @@ List only concrete schema/reference/logic problems.
 REPAIR
 ------
 
-Repair these LEP v0.6 definitions. Preserve story intent and explicit
+Repair these LEP v0.6.1 definitions. Preserve story intent and explicit
 IDs/paths. Return the complete corrected .txt definitions file.
 
 ======================================================================
@@ -732,7 +732,7 @@ WHAT A GOOD AI RESULT SHOULD NOT DO
 
 It should NOT:
 
-- invent deadline, onExpire, or unsupported v0.6 fields;
+- invent deadline, onExpire, or unsupported v0.6.1 fields;
 - convert "3 months later" prose into timeline movement unless a time jump was
   actually requested;
 - invent relationship.partner because two characters flirt;
@@ -740,13 +740,13 @@ It should NOT:
 - create Time Anchors for every event automatically;
 - rewrite explicit creator paths;
 - treat chapter listing order as automatic sequencing;
-- assume AI Dungeon prose updates EP paths;
+- assume AI Dungeon prose updates LEP paths;
 - generate arbitrary JavaScript expressions.
 
 If generated output does one of these, validate or repair it before using it.
 
 
-LEP v0.6 EVENT SEMANTICS — FIVE COMPLETE WORKED EXAMPLES
+LEP v0.6.1 EVENT SEMANTICS — FIVE COMPLETE WORKED EXAMPLES
 =======================================================
 
 
@@ -760,17 +760,17 @@ Paradox can provide time-based due gates; this example uses state only.
 
 BEGIN LEP EXAMPLE: A
 // BEGIN EVENT DEFINITIONS — EDIT HERE
-var EP_START = {
+var LEP_START = {
   "chapter": "prom",
   "variables": {
     "promDue": false,
     "partner": "single"
   }
 };
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   "prom": "The school prepares for prom."
 };
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     "id": "prom_Maya",
     "role": "milestone",
@@ -847,17 +847,17 @@ chapter description neutral; do not put the hidden outcome in memory.
 
 BEGIN LEP EXAMPLE: B
 // BEGIN EVENT DEFINITIONS — EDIT HERE
-var EP_START = {
+var LEP_START = {
   "chapter": "story",
   "variables": {
     "status": "dating",
     "leftTown": false
   }
 };
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   "story": "Life in the town continues."
 };
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     "id": "breakup",
     "chapter": "story",
@@ -909,24 +909,24 @@ END LEP EXAMPLE
 
 EXAMPLE C — CHAPTER END BRANCHING
 Explicit creator branches choose different destination chapters. Set route to
-Maya or Julia with /ep set. Each ending has one source chapter and latches when
+Maya or Julia with /lep set. Each ending has one source chapter and latches when
 eligible. Their shared group closes the losing ending. Normal legacy events
 with nextChapter remain valid without the chapterEnd role.
 
 BEGIN LEP EXAMPLE: C
 // BEGIN EVENT DEFINITIONS — EDIT HERE
-var EP_START = {
+var LEP_START = {
   "chapter": "decision",
   "variables": {
     "route": "undecided"
   }
 };
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   "decision": "You are deciding which route to take.",
   "maya": "You continue with Maya.",
   "julia": "You continue with Julia."
 };
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     "id": "end_maya",
     "role": "chapterEnd",
@@ -967,16 +967,16 @@ add a chapter restriction, an incompatible chapter makes it dormant, not lost.
 
 BEGIN LEP EXAMPLE: D
 // BEGIN EVENT DEFINITIONS — EDIT HERE
-var EP_START = {
+var LEP_START = {
   "chapter": "hall",
   "variables": {
     "messageSent": true
   }
 };
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   "hall": "The school day continues."
 };
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     "id": "urgent_announcement",
     "queue": true,
@@ -1019,16 +1019,16 @@ A losing forceEvent is rejected. testEvent never resolves the group.
 
 BEGIN LEP EXAMPLE: E
 // BEGIN EVENT DEFINITIONS — EDIT HERE
-var EP_START = {
+var LEP_START = {
   "chapter": "choice",
   "variables": {
     "route": "undecided"
   }
 };
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   "choice": "Two paths lead out of the school."
 };
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     "id": "take_left",
     "exclusiveGroup": "route_outcome",
@@ -1052,3 +1052,20 @@ var EP_EVENTS = [
 ];
 // END EVENT DEFINITIONS
 END LEP EXAMPLE
+
+27. CLEAN LEP NAMESPACE AND INFORMATIONAL STATUS (v0.6.1)
+=======================================================
+Only emit LEP_START, LEP_CHAPTERS, LEP_EVENTS and /lep command examples.
+Pre-v0.6.1 saved adventures must retain their previous runtime. Use a fresh
+adventure for v0.6.1; no automatic migration or old namespace aliases exist.
+The event-definition schema and all v0.6 role/queue/display/group semantics are
+unchanged. Do not add configuration or status properties to event definitions.
+The single editable LEP Configuration card owns all settings. Auto-Cards
+originally by LewdLeah; Inner Self originally by LewdLeah. Enabling Auto-Cards
+creates an informational LEP — Auto-Cards Status companion on the next safe
+ordinary hook, not a guaranteed world entity. Status Entry is not configuration.
+Auto-Cards needs at least two mentions across distinct successful story outputs;
+model compliance, cooldown, Context room and APIs still govern attempts.
+Use /lep status, /lep get = PATH, /lep vars and /lep inspect = event EVENT_ID.
+See ../docs/LEP_Technical_Reference.txt for exact generated configuration and
+status examples, card identity contracts and host snapshot caveats.

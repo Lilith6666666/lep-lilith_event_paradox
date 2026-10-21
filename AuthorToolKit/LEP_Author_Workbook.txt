@@ -1,8 +1,8 @@
 LEP: Lilith Event Paradox — LEP Author Toolkit
 HUMAN AUTHOR WORKBOOK
 =====================
-Compatibility: LEP v0.6
-Workbook format version: 0.6
+Compatibility: LEP v0.6.1
+Workbook format version: 0.6.1
 
 PURPOSE
 -------
@@ -126,7 +126,7 @@ LEP does not automatically know:
 choice.search = "backstage"
 
 unless your event/scenario logic explicitly changes that path or the
-creator/player uses a suitable /ep command.
+creator/player uses a suitable /lep command.
 
 TWO WAYS TO WRITE STATE
 
@@ -528,7 +528,7 @@ path currently points to.
 11. STORY TIME
 ======================================================================
 
-LEP v0.6 tracks authored narrative time.
+LEP v0.6.1 tracks authored narrative time.
 
 Supported units:
 
@@ -545,7 +545,7 @@ EVENT TIME JUMP
 TIME JUMP
 3 months, 2 days, 6 hours
 
-The AI compiler converts this into EP timeAdvance.
+The AI compiler converts this into LEP timeAdvance.
 
 CHAPTER TIME JUMP
 
@@ -597,7 +597,7 @@ This is not placed inside an EVENT block.
 
 Players/creators can use a Do action:
 
-/ep timeSkip = 3mo;Three months pass. Alex settles into his new home.
+/lep timeSkip = 3mo;Three months pass. Alex settles into his new home.
 
 Units:
 
@@ -609,7 +609,7 @@ h  = hours
 
 Example:
 
-/ep timeSkip = 2d,6h;Two days pass; by evening, everyone is exhausted.
+/lep timeSkip = 2d,6h;Two days pass; by evening, everyone is exhausted.
 
 The first semicolon separates time from exact story prose.
 
@@ -624,7 +624,7 @@ timeSkip does NOT:
 
 For a long time-skip scene that does not fit in one normal AI Dungeon action:
 
-/ep advanceTime = {"months":3}
+/lep advanceTime = {"months":3}
 
 Then write the transition normally in Story mode.
 
@@ -787,7 +787,7 @@ Before sending the workbook to an AI:
 [ ] Important order is expressed with After Event / conditions / timing.
 [ ] I only created paths for state that later logic needs.
 [ ] Numeric paths used with + or - have starting numeric values.
-[ ] My Scene text is the exact text I want EP to use.
+[ ] My Scene text is the exact text I want LEP to use.
 [ ] I marked Replace only where I need full scene control.
 [ ] I added memory only where useful.
 [ ] I added time jumps wherever story time should actually advance.
@@ -955,7 +955,7 @@ COPY THE CHAPTER BLOCK ABOVE FOR EVERY CHAPTER.
 THEN RETURN TO THE EVENT BANK AND FILL EACH EVENT'S Chapter FIELD.
 ----------------------------------------------------------------------
 
-EVENT SEMANTICS — v0.6
+EVENT SEMANTICS — v0.6.1
 -----------------------
 Write events first, then plan chapters. Normal is the default. A Milestone or
 Chapter End latches when fully due; Queue=Yes latches a Normal event. Once

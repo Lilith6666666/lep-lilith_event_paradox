@@ -1,8 +1,8 @@
 LEP: Lilith Event Paradox — LEP Author Toolkit
 SKILL BUILDER GUIDE
 ===================
-Compatible toolkit: LEP v0.6
-Skill guide version: 0.6
+Compatible toolkit: LEP v0.6.1
+Skill guide version: 0.6.1
 
 PURPOSE
 -------
@@ -39,10 +39,10 @@ The LEP Author Toolkit contains three main files:
 1. LEP_AI_Authoring_Spec.txt
 
    PURPOSE:
-   The authoritative machine-facing LEP v0.6 authoring specification.
+   The authoritative machine-facing LEP v0.6.1 authoring specification.
 
    This file defines:
-   - valid EP_START structure;
+   - valid LEP_START structure;
    - chapters;
    - events;
    - paths;
@@ -111,15 +111,15 @@ LEP Compiler
 Recommended short description:
 
 Compiles plain-language LEP Author Workbooks into validated,
-copy-paste-ready LEP v0.6 event definitions.
+copy-paste-ready LEP v0.6.1 event definitions.
 
 
 Recommended longer description:
 
-Create, edit, validate and repair LEP v0.6 scenario definitions
+Create, edit, validate and repair LEP v0.6.1 scenario definitions
 without manually writing JavaScript. Upload a filled LEP Author
 Workbook and ask the Skill to compile it into a ready-to-use .txt file
-containing EP_START, EP_CHAPTERS and EP_EVENTS.
+containing LEP_START, LEP_CHAPTERS and LEP_EVENTS.
 
 
 ======================================================================
@@ -328,9 +328,9 @@ When the user asks to compile/create LEP events:
 
 Return a ready-to-use plain-text artifact containing the complete:
 
-var EP_START = ...
-var EP_CHAPTERS = ...
-var EP_EVENTS = ...
+var LEP_START = ...
+var LEP_CHAPTERS = ...
+var LEP_EVENTS = ...
 
 definitions block.
 
@@ -354,7 +354,7 @@ Modify existing definitions according to creator instructions while preserving
 unrelated valid content.
 
 VALIDATE
-Inspect definitions against LEP v0.6 and report concrete problems.
+Inspect definitions against LEP v0.6.1 and report concrete problems.
 
 REPAIR
 Correct technical errors while preserving creator story intent.
@@ -401,12 +401,12 @@ VERSION
 
 This Skill is designed for:
 
-LEP v0.6
+LEP v0.6.1
 AI Authoring Specification 0.6
 
 Do not silently use syntax from hypothetical future LEP versions.
 
-If a user requests a feature unsupported by v0.6, explain that limitation rather
+If a user requests a feature unsupported by v0.6.1, explain that limitation rather
 than fabricating syntax.
 
 ----------------------------------------------------------------------
@@ -422,7 +422,7 @@ If the platform supports preset starter prompts, use some of these:
 
 Compile my LEP workbook.
 
-Create EP events from my uploaded Author Workbook.
+Create LEP events from my uploaded Author Workbook.
 
 Add these new events to my existing LEP definitions.
 
@@ -462,10 +462,10 @@ After the Skill is installed:
 
    <Scenario_Name>_LEP_Events.txt
 
-9. Creator copies the generated EP_START / EP_CHAPTERS / EP_EVENTS block into
+9. Creator copies the generated LEP_START / LEP_CHAPTERS / LEP_EVENTS block into
    the editable LEP definitions section in Library.js.
 
-10. Creator tests the scenario in a NEW adventure when testing new EP_START
+10. Creator tests the scenario in a NEW adventure when testing new LEP_START
     values.
 
 
@@ -517,15 +517,15 @@ Preferred file structure:
 
 // BEGIN EVENT DEFINITIONS — EDIT HERE
 
-var EP_START = {
+var LEP_START = {
   ...
 };
 
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   ...
 };
 
-var EP_EVENTS = [
+var LEP_EVENTS = [
   ...
 ];
 
@@ -585,7 +585,7 @@ Starting chapter:
 School
 
 Expected:
-- valid EP_START;
+- valid LEP_START;
 - school chapter exists;
 - event uses minChapterTurns:2;
 - no invented memory/effects/time.
@@ -676,7 +676,7 @@ If the player does not find the key within three days, automatically fire a
 failure event.
 
 Expected:
-The Skill identifies that LEP v0.6 does not yet support authored
+The Skill identifies that LEP v0.6.1 does not yet support authored
 deadline/event-expiry schema.
 
 It must NOT invent:
@@ -754,7 +754,7 @@ Keep the Skill version tied to the AI Authoring Specification.
 Current:
 
 LEP:
-v0.6
+v0.6.1
 
 AI Authoring Specification:
 0.6
@@ -784,7 +784,7 @@ Specification so multiple AI platforms can share the same behavior.
 
 For GitHub/public release, distribute:
 
-EP_Author_Toolkit/
+LEP_Author_Toolkit/
 |
 |-- LEP_AI_Authoring_Spec.txt
 |-- LEP_Author_Workbook.txt
@@ -839,15 +839,15 @@ The Skill is only a convenient persistent wrapper around that specification.
 This keeps LEP authoring portable across AI platforms and makes
 future updates easier to maintain.
 
-LEP BUILDER v0.6 PACKAGE
+LEP BUILDER v0.6.1 PACKAGE
 -------------------------
 Use LEP_Builder_Skill.zip or the lep-builder folder supplied with this toolkit.
-The older EP Builder package is historical; no installation was changed for you.
+The older LEP Builder package is historical; no installation was changed for you.
 The current reusable skill slug is lep-builder, displayed as LEP Builder.
 Read the authoritative LEP_AI_Authoring_Spec.txt first. Preserve event-first,
 chapters-second compilation and exact creator prose. Default to Normal, unqueued
 Append. Only explicit creator requests select milestone/chapterEnd, queue or
-exclusiveGroup. Silent is output mode, never type. Validate all v0.6 structural
+exclusiveGroup. Silent is output mode, never type. Validate all v0.6.1 structural
 restrictions and explain dormant latches and at-most-one group semantics.
 
 Validation cases: compile a prom Milestone group; a visible breakup followed by
@@ -860,3 +860,20 @@ The repository maintains one copy of each toolkit contract. Skill resources are
 links to those maintained files; the distributable ZIP contains resolved file
 contents and is generated from the same sources. No second specification is
 authoritative. Live runtime behavior is tested separately in the manual checklist.
+
+27. CLEAN LEP NAMESPACE AND INFORMATIONAL STATUS (v0.6.1)
+=======================================================
+Only emit LEP_START, LEP_CHAPTERS, LEP_EVENTS and /lep command examples.
+Pre-v0.6.1 saved adventures must retain their previous runtime. Use a fresh
+adventure for v0.6.1; no automatic migration or old namespace aliases exist.
+The event-definition schema and all v0.6 role/queue/display/group semantics are
+unchanged. Do not add configuration or status properties to event definitions.
+The single editable LEP Configuration card owns all settings. Auto-Cards
+originally by LewdLeah; Inner Self originally by LewdLeah. Enabling Auto-Cards
+creates an informational LEP — Auto-Cards Status companion on the next safe
+ordinary hook, not a guaranteed world entity. Status Entry is not configuration.
+Auto-Cards needs at least two mentions across distinct successful story outputs;
+model compliance, cooldown, Context room and APIs still govern attempts.
+Use /lep status, /lep get = PATH, /lep vars and /lep inspect = event EVENT_ID.
+See ../docs/LEP_Technical_Reference.txt for exact generated configuration and
+status examples, card identity contracts and host snapshot caveats.

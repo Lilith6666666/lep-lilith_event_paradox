@@ -1,14 +1,14 @@
 LEP: Lilith Event Paradox — LEP Author Toolkit
 AI AUTHORING SPECIFICATION
 ==========================
-Compatibility: LEP v0.6
-Toolkit specification version: 0.6
+Compatibility: LEP v0.6.1
+Toolkit specification version: 0.6.1
 
 PURPOSE
 -------
 This file is the source instruction set for ChatGPT, Claude, Gemini, other
 capable AI models, or a reusable AI Skill that compiles a human LEP
-design into valid, copy-paste-ready LEP v0.6 definitions.
+design into valid, copy-paste-ready LEP v0.6.1 definitions.
 
 ======================================================================
 0. ROLE — LEP AUTHOR COMPILER
@@ -16,8 +16,8 @@ design into valid, copy-paste-ready LEP v0.6 definitions.
 
 Act as an LEP compiler and validator first, not a story designer.
 
-Translate a filled LEP_Author_Workbook.txt into valid EP_START,
-EP_CHAPTERS and EP_EVENTS definitions.
+Translate a filled LEP_Author_Workbook.txt into valid LEP_START,
+LEP_CHAPTERS and LEP_EVENTS definitions.
 
 Preserve creator intent.
 
@@ -25,7 +25,7 @@ You MAY:
 - generate safe machine IDs when omitted;
 - generate safe LEP variable paths when the creator describes state
   naturally and provides no path;
-- initialize required variables in EP_START;
+- initialize required variables in LEP_START;
 - add technical event-completion flags when the creator explicitly says one
   event must happen after another and no existing path expresses that dependency;
 - map human-friendly wording into supported LEP fields/operators;
@@ -53,7 +53,7 @@ Preferred input:
 - LEP_Author_Workbook.txt filled by a human.
 
 Optional additional input:
-- existing EP definitions;
+- existing LEP definitions;
 - older compiled event files;
 - scenario notes;
 - Story Card details;
@@ -76,15 +76,15 @@ Unless asked otherwise, output ONE plain-text artifact containing:
 
 // BEGIN EVENT DEFINITIONS — EDIT HERE
 
-var EP_START = {
+var LEP_START = {
   ...
 };
 
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   ...
 };
 
-var EP_EVENTS = [
+var LEP_EVENTS = [
   ...
 ];
 
@@ -123,15 +123,15 @@ C. READ THE CHAPTER PLAN
 - Assign events exactly as specified.
 - Verify every event assignment unless intentionally chapter-unrestricted.
 
-D. BUILD EP_START
+D. BUILD LEP_START
 - Set starting chapter.
 - Initialize required variables.
 
-E. BUILD EP_CHAPTERS
+E. BUILD LEP_CHAPTERS
 - Use simple strings when possible.
 - Use rich objects when title/opening/timeAdvance is needed.
 
-F. BUILD EP_EVENTS
+F. BUILD LEP_EVENTS
 - Translate every event using supported schema only.
 
 G. VALIDATE
@@ -151,11 +151,11 @@ Chapter ID:
 
 Repeat:
 - No.
-- EP default once=true.
+- LEP default once=true.
 
 Output:
 - Append.
-- EP default display="append".
+- LEP default display="append".
 
 Priority:
 - Normal = 0.
@@ -184,12 +184,12 @@ Chapter time jump:
 Do not use priority to imitate a requested explicit dependency.
 
 ======================================================================
-5. EP_START
+5. LEP_START
 ======================================================================
 
 Form:
 
-var EP_START = {
+var LEP_START = {
   chapter: "known_chapter_id",
   variables: {
     ...
@@ -222,14 +222,14 @@ Natural language:
 
 Use one short logical path consistently.
 
-Do not create fake creator-variable mirrors of EP internal chapter, timeline,
+Do not create fake creator-variable mirrors of LEP internal chapter, timeline,
 completion counters, entities, etc.
 
 ======================================================================
 6. PATH RULES
 ======================================================================
 
-A path is story state relative to EP_START.variables.
+A path is story state relative to LEP_START.variables.
 
 Examples:
 key.missing
@@ -306,7 +306,7 @@ description is required for rich chapters.
 Use rich chapter form when visible presentation or chapter-entry timeAdvance
 is requested.
 
-The EP_START chapter does not automatically announce or apply its own
+The LEP_START chapter does not automatically announce or apply its own
 timeAdvance at initial state creation.
 
 Supported timeAdvance units:
@@ -379,7 +379,7 @@ Never convert turns into narrative time or narrative time into turn gates.
 Human:
 After Event: Welcome Home
 
-Normal EP conditions do not query completed event IDs as creator paths.
+Normal LEP conditions do not query completed event IDs as creator paths.
 
 If the human explicitly requires Event B after Event A and supplies no existing
 path that already expresses this, create a technical progress flag.
@@ -581,7 +581,7 @@ character and characterPath are mutually exclusive.
 16. DYNAMIC CHARACTERS / LOCATIONS
 ======================================================================
 
-EP can reference registered Character and Location entities.
+LEP can reference registered Character and Location entities.
 
 Narrative role must be creator-controlled.
 
@@ -618,7 +618,7 @@ memory.characterPath
 17. NORMAL VARIABLE INTERPOLATION
 ======================================================================
 
-Normal EP variable interpolation:
+Normal LEP variable interpolation:
 
 {{path}}
 
@@ -658,7 +658,7 @@ Display normalization:
 24 hours -> 1 day
 months never convert to days.
 
-Narrative prose such as "three months later" does not itself advance EP time.
+Narrative prose such as "three months later" does not itself advance LEP time.
 
 ======================================================================
 19. TIME ANCHORS
@@ -690,14 +690,14 @@ timeAnchor: "festival_opened"
 That association does not create an anchor.
 
 ======================================================================
-20. /ep timeSkip
+20. /lep timeSkip
 ======================================================================
 
-/ep timeSkip is a console/player command, not an EP_EVENTS definition.
+/lep timeSkip is a console/player command, not an LEP_EVENTS definition.
 
 Syntax:
 
-/ep timeSkip = 3mo;Three months pass. Alex settles into his new home.
+/lep timeSkip = 3mo;Three months pass. Alex settles into his new home.
 
 Compact units:
 y = years
@@ -710,7 +710,7 @@ No minutes.
 
 First semicolon separates duration from canonical exact prose.
 
-Do not place timeSkip inside EP_EVENTS.
+Do not place timeSkip inside LEP_EVENTS.
 
 For authored event/chapter time movement, use timeAdvance.
 
@@ -795,7 +795,7 @@ Validate these LEP events.
 Repair this LEP file and return a corrected .txt.
 
 ======================================================================
-24. UNSUPPORTED IN EP v0.6 — NEVER INVENT
+24. UNSUPPORTED IN LEP v0.6.1 — NEVER INVENT
 ======================================================================
 
 Do not invent schema for:
@@ -811,7 +811,7 @@ Do not invent schema for:
 - arbitrary JavaScript condition/effect expressions;
 - automatic time extraction from story prose.
 
-If requested, state that v0.6 does not support it instead of fabricating syntax.
+If requested, state that v0.6.1 does not support it instead of fabricating syntax.
 
 ======================================================================
 25. FINAL OUTPUT STANDARD
@@ -827,10 +827,11 @@ Do not rewrite the README.
 Outside the file, only mention unresolved ambiguity or unsupported requested
 features when necessary.
 
-26. EVENT SEMANTICS — AUTHORITATIVE v0.6 ADDITIONS
+26. EVENT SEMANTICS — AUTHORITATIVE v0.6.1 ADDITIONS
 =================================================
-Brand: LEP: Lilith Event Paradox. Keep EP_START, EP_CHAPTERS, EP_EVENTS,
-state.eventParadox and /ep; those are compatibility identifiers, not old syntax.
+Brand: LEP: Lilith Event Paradox. Keep LEP_START, LEP_CHAPTERS, LEP_EVENTS,
+state.lep and /lep are the only current identifiers. This is a breaking namespace
+release: old saved adventures need the old runtime; use a fresh adventure for v0.6.1.
 
 Defaults: role:"normal", queue:false, no exclusiveGroup, display:"append".
 Normal nextChapter remains valid without a role. Do not infer role, queue,
@@ -879,9 +880,9 @@ First successful group member atomically records its ID and clears losing
 pending members. testEvent does not arm/resolve groups. forceEvent bypasses
 ordinary gates but cannot force a different winner; re-forcing the winner is
 allowed under the existing force semantics. Silent test/force responses are
-non-story console screens, not Scene prose. /ep inspect reports role/display,
+non-story console screens, not Scene prose. /lep inspect reports role/display,
 queue/group/pending/winner, ordinary eligibility and pending deliverability.
-/ep status counts pending visible/silent entries and resolved groups.
+/lep status counts pending visible/silent entries and resolved groups.
 
 VALIDATION:
 Reject unknown roles/types, invalid queue/group types/IDs, repeating latches or
@@ -890,7 +891,7 @@ Chapter End without one source or nextChapter, and every silent combination
 forbidden above. Existing v0.5 definitions remain valid with default semantics.
 There are no deadline, onExpire, event-window, maxTurns/maxChapterTurns expiry,
 calendar, afterMonths or other temporal scheduling fields. Future Time Paradox
-can supply due gates, but v0.6 only supplies event semantics.
+can supply due gates, but v0.6.1 only supplies event semantics.
 
 ENTITY / COMPANION SETTINGS:
 Creator Character/Location cards register even with autoCardsEnabled=false.
@@ -902,3 +903,20 @@ LEP event state, and its own Auto-Cards installer remains removed.
 
 The maintained specification is this file. Skill/ZIP references are generated
 from it; do not independently revise packaged snapshots.
+
+27. CLEAN LEP NAMESPACE AND INFORMATIONAL STATUS (v0.6.1)
+=======================================================
+Only emit LEP_START, LEP_CHAPTERS, LEP_EVENTS and /lep command examples.
+Pre-v0.6.1 saved adventures must retain their previous runtime. Use a fresh
+adventure for v0.6.1; no automatic migration or old namespace aliases exist.
+The event-definition schema and all v0.6 role/queue/display/group semantics are
+unchanged. Do not add configuration or status properties to event definitions.
+The single editable LEP Configuration card owns all settings. Auto-Cards
+originally by LewdLeah; Inner Self originally by LewdLeah. Enabling Auto-Cards
+creates an informational LEP — Auto-Cards Status companion on the next safe
+ordinary hook, not a guaranteed world entity. Status Entry is not configuration.
+Auto-Cards needs at least two mentions across distinct successful story outputs;
+model compliance, cooldown, Context room and APIs still govern attempts.
+Use /lep status, /lep get = PATH, /lep vars and /lep inspect = event EVENT_ID.
+See the runtime reference (LEP_README.txt in the packaged skill) for exact generated configuration and
+status examples, card identity contracts and host snapshot caveats.
