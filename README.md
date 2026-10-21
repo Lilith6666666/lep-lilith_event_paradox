@@ -2,16 +2,16 @@
   <img src="assets/Neon Study Night_ Lilith Event Paradox.png" alt="LEP: Lilith Event Paradox" width="100%">
 </p>
 
-# LEP: Lilith Event Paradox v0.6
+# LEP: Lilith Event Paradox v0.6.1
 
 > **An event engine for AI Dungeon for people who made the mistake of having a plot.**
 
 ![Status](https://img.shields.io/badge/status-public_beta-orange)
-![Version](https://img.shields.io/badge/version-0.6-purple)
+![Version](https://img.shields.io/badge/version-0.6.1-purple)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-AI_Dungeon-black)
 
-**LEP: Lilith Event Paradox** — formerly Event Paradox — is a deterministic event engine for AI Dungeon scenario creators.
+**LEP: Lilith Event Paradox** — is a deterministic event engine for AI Dungeon scenario creators.
 
 I made it because apparently watching the AI acknowledge a carefully planned plot and then wander away from it five turns later was not enough suffering, so naturally I responded by building infrastructure.
 
@@ -25,11 +25,11 @@ That is still the theory.
 
 ---
 
-## What's new in v0.6?
+## What's new in v0.6.1?
 
-v0.6 is the **Event Semantics** release.
+v0.6.1 is the **Event Semantics** release.
 
-Previous versions could already fire deterministic scenes. v0.6 adds stronger ways to describe what those scenes *mean* to the story engine.
+Previous versions could already fire deterministic scenes. v0.6.1 adds stronger ways to describe what those scenes *mean* to the story engine.
 
 ### Normal Events
 
@@ -121,7 +121,7 @@ Chapter End Events make chapter resolution and branching explicit.
 
 They are first-class chapter finales: visible, once-only, and tied to a specific destination chapter.
 
-Old-style events with `nextChapter` are still supported. v0.6 does not force existing scenarios to rewrite working definitions just because I discovered another abstraction.
+Old-style events with `nextChapter` are still supported. v0.6.1 does not force existing scenarios to rewrite working definitions just because I discovered another abstraction.
 
 ### Queued Events
 
@@ -171,7 +171,7 @@ It will not invent a missing third option because you forgot to write one.
 
 ## One visible event. One background consequence.
 
-v0.6 keeps event execution deliberately bounded.
+v0.6.1 keeps event execution deliberately bounded.
 
 A normal successful story Output may commit:
 
@@ -205,9 +205,9 @@ LEP can:
 - optionally run an integrated **Inner Self** compatibility build;
 - track authored **narrative time** in years, months, weeks, days and hours;
 - record important **Time Anchors**;
-- perform canonical manual time skips with `/ep timeSkip`;
-- inspect state and definitions through `/ep get`, `/ep vars` and `/ep inspect`;
-- preview and force events/chapters through the `/ep` console;
+- perform canonical manual time skips with `/lep timeSkip`;
+- inspect state and definitions through `/lep get`, `/lep vars` and `/lep inspect`;
+- preview and force events/chapters through the `/lep` console;
 - commit event prose, effects, memory, time, group resolution and chapter changes transactionally;
 - preserve Retry safety so successful consequences are not supposed to happen twice because AI Dungeon decided to have another go.
 
@@ -243,7 +243,7 @@ LEP just makes sure some important things are not left entirely to vibes.
 
 # Public Beta
 
-**v0.6 is still a public beta.**
+**v0.6.1 is still a public beta.**
 
 The engine has a dependency-free offline Node test suite covering the major event, scheduler, console, entity, timeline, Inner Self, Retry and background-event paths.
 
@@ -268,8 +268,8 @@ If something behaves strangely, open an Issue with:
 - what you expected;
 - what actually happened;
 - the relevant event definition;
-- `/ep status` if possible;
-- `/ep inspect = event EVENT_ID` if relevant;
+- `/lep status` if possible;
+- `/lep inspect = event EVENT_ID` if relevant;
 - whether Retry/Undo was involved;
 - whether Inner Self or another script was enabled.
 
@@ -279,13 +279,13 @@ If something behaves strangely, open an Issue with:
 
 ## 1. Install LEP
 
-In AI Dungeon's scenario/adventure scripting editor, copy the four files from the `EP/` folder:
+In AI Dungeon's scenario/adventure scripting editor, copy the four files from the `LEP/` folder:
 
 ```text
-EP/Library.js
-EP/Input.js
-EP/Context.js
-EP/Output.js
+LEP/Library.js
+LEP/Input.js
+LEP/Context.js
+LEP/Output.js
 ```
 
 Paste each file into its matching AI Dungeon scripting tab.
@@ -302,9 +302,9 @@ Node is used only for the offline test suite.
 
 ---
 
-## 2. Start a new adventure when changing EP_START
+## 2. Start a new adventure when changing LEP_START
 
-If you changed `EP_START`, use a **new adventure**.
+If you changed `LEP_START`, use a **new adventure**.
 
 Existing adventures keep their current state.
 
@@ -319,33 +319,33 @@ Unfortunately.
 Use a **Do** action:
 
 ```text
-/ep status
+/lep status
 ```
 
 Yes, the project is now **LEP: Lilith Event Paradox**.
 
-The command prefix stays `/ep` for backward compatibility.
+v0.6.1 uses only the new LEP identifiers. Old saved adventures require their old runtime; use a fresh adventure for this release.
 
 Useful commands include:
 
 ```text
-/ep help
-/ep status
-/ep eventsID
-/ep chaptersID
-/ep entities
-/ep time
-/ep get = choice.search
-/ep vars
-/ep inspect = event EVENT_ID
-/ep inspect = chapter CHAPTER_ID
-/ep set = {"path":"choice.search","value":"backstage"}
-/ep testEvent = EVENT_ID
-/ep forceEvent = EVENT_ID
-/ep testChapter = CHAPTER_ID
-/ep forceChapter = CHAPTER_ID
-/ep advanceTime = {"months":3,"hours":6}
-/ep timeSkip = 3mo;Three months pass.
+/lep help
+/lep status
+/lep eventsID
+/lep chaptersID
+/lep entities
+/lep time
+/lep get = choice.search
+/lep vars
+/lep inspect = event EVENT_ID
+/lep inspect = chapter CHAPTER_ID
+/lep set = {"path":"choice.search","value":"backstage"}
+/lep testEvent = EVENT_ID
+/lep forceEvent = EVENT_ID
+/lep testChapter = CHAPTER_ID
+/lep forceChapter = CHAPTER_ID
+/lep advanceTime = {"months":3,"hours":6}
+/lep timeSkip = 3mo;Three months pass.
 ```
 
 Read-only tools such as `get`, `vars` and `inspect` are there so creators can look at the machinery without poking it with a stick first.
@@ -363,24 +363,24 @@ Use the destructive-looking ones in a disposable test adventure unless continuit
 Creators still define three core structures:
 
 ```text
-EP_START
-EP_CHAPTERS
-EP_EVENTS
+LEP_START
+LEP_CHAPTERS
+LEP_EVENTS
 ```
 
-The `EP_` names are intentionally preserved for backward compatibility.
+v0.6.1 uses only the new LEP identifiers. Old saved adventures require their old runtime; use a fresh adventure for this release.
 
-- **EP_START** — starting chapter and creator variables.
-- **EP_CHAPTERS** — narrative phases, descriptions, visible openings and optional entry-time changes.
-- **EP_EVENTS** — exact scenes, conditions, roles, queue behavior, effects, memories, transitions and timing.
+- **LEP_START** — starting chapter and creator variables.
+- **LEP_CHAPTERS** — narrative phases, descriptions, visible openings and optional entry-time changes.
+- **LEP_EVENTS** — exact scenes, conditions, roles, queue behavior, effects, memories, transitions and timing.
 
 For manual authoring, see:
 
 ```text
-AuthorToolKit/EventParadox_Events_Creator.txt
+AuthorToolKit/LEP_Events_Creator.txt
 ```
 
-Some repository filenames may retain the older `EventParadox_*` prefix during the branding transition.
+v0.6.1 uses only the new LEP identifiers. Old saved adventures require their old runtime; use a fresh adventure for this release.
 
 That does **not** mean they belong to a different engine.
 
@@ -413,10 +413,10 @@ This is why LEP does not have one giant `type` field trying to explain the entir
 
 ---
 
-# A Tiny v0.6 Example
+# A Tiny v0.6.1 Example
 
 ```js
-var EP_START = {
+var LEP_START = {
   chapter: "school",
   variables: {
     prom: {
@@ -428,13 +428,13 @@ var EP_START = {
   }
 };
 
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   school: "The last weeks of school are passing quickly.",
   prom: "Prom night has arrived.",
   aftermath: "Prom is over. The consequences remain."
 };
 
-var EP_EVENTS = [
+var LEP_EVENTS = [
   {
     id: "prom_becomes_due",
     chapter: "school",
@@ -553,8 +553,8 @@ Time moves only when explicitly authored through:
 
 - event `timeAdvance`;
 - destination chapter `timeAdvance`;
-- `/ep advanceTime`;
-- `/ep timeSkip`.
+- `/lep advanceTime`;
+- `/lep timeSkip`.
 
 The AI writing:
 
@@ -570,7 +570,7 @@ Important moments can record a `timeAnchor`.
 
 That allows LEP to keep track of how long ago something happened.
 
-In v0.6, **Time Anchor** and **Milestone Event** are different concepts:
+In v0.6.1, **Time Anchor** and **Milestone Event** are different concepts:
 
 - **Time Anchor** = records when something happened.
 - **Milestone Event** = an event role that becomes persistent once it is due.
@@ -581,7 +581,7 @@ Please do not make me name a third thing "milestone."
 
 Not yet.
 
-v0.6 deliberately prepares the scheduler for future **Time Paradox** work, but it does not yet add narrative-time event gates such as:
+v0.6.1 deliberately prepares the scheduler for future **Time Paradox** work, but it does not yet add narrative-time event gates such as:
 
 ```text
 fire after 3 months
@@ -593,16 +593,16 @@ For now, milestones become due through existing deterministic conditions such as
 
 Future Time Paradox releases are intended to answer **when** events become due.
 
-v0.6 focuses on **what LEP does once they are due**.
+v0.6.1 focuses on **what LEP does once they are due**.
 
 ---
 
-# `/ep timeSkip`
+# `/lep timeSkip`
 
 A manual canonical time skip:
 
 ```text
-/ep timeSkip = 3mo,2d,6h;Three months pass. Things have changed.
+/lep timeSkip = 3mo,2d,6h;Three months pass. Things have changed.
 ```
 
 LEP records the elapsed narrative time and inserts everything after the first semicolon as exact canonical story prose.
@@ -644,9 +644,9 @@ Compile this for LEP.
 8. Receive complete:
 
 ```text
-EP_START
-EP_CHAPTERS
-EP_EVENTS
+LEP_START
+LEP_CHAPTERS
+LEP_EVENTS
 ```
 
 definitions.
@@ -675,15 +675,15 @@ Basically:
 
 Branding.
 
-The project originally shipped as **Event Paradox**.
+The project originally shipped as **LEP**.
 
-Starting with v0.6, the public name is:
+Starting with v0.6.1, the public name is:
 
 > **LEP: Lilith Event Paradox**
 
 The stable technical namespace is intentionally less dramatic.
 
-`EP_START`, `EP_CHAPTERS`, `EP_EVENTS`, `/ep`, and some internal `EP_*` identifiers remain for backward compatibility.
+v0.6.1 uses only the new LEP identifiers. Old saved adventures require their old runtime; use a fresh adventure for this release.
 
 Renaming every machine-facing identifier would make the logo prettier and existing adventures sadder.
 
@@ -754,7 +754,7 @@ choice.search = "backstage"
 
 Important deterministic state changes are explicit.
 
-Use authored effects or `/ep set`.
+Use authored effects or `/lep set`.
 
 ---
 
@@ -798,7 +798,7 @@ Later visible events can reveal that state naturally.
 
 Yes.
 
-v0.6 supports branching through:
+v0.6.1 supports branching through:
 
 - chapters;
 - turn gates;
@@ -811,7 +811,7 @@ v0.6 supports branching through:
 - pending Milestone/Queued outcomes;
 - normal `nextChapter` transitions.
 
-You can also create an impossible dependency chain and stare at `/ep inspect` for twenty minutes.
+You can also create an impossible dependency chain and stare at `/lep inspect` for twenty minutes.
 
 I believe in you.
 
@@ -854,7 +854,7 @@ LEP already includes optional Inner Self integration because manually combining 
 
 Other scripts that manipulate Input, Context, history, state or final Output ordering may still require integration work.
 
-AI Dungeon Optimized Context compatibility is **not part of v0.6**.
+AI Dungeon Optimized Context compatibility is **not part of v0.6.1**.
 
 That is separate roadmap work.
 
@@ -902,38 +902,135 @@ This is how software happens, apparently.
 
 # Configuration
 
-LEP creates/uses a configuration Story Card.
+## v0.6.1 configuration and Auto-Cards feedback
 
-The visible v0.6 title may be branded as:
+**Breaking installation:** use a new adventure. Install the four `LEP/` files,
+then author `LEP_START`, `LEP_CHAPTERS` and `LEP_EVENTS`. Keep the older runtime
+in <=v0.6 adventures. There is no saved-state/card migration or `/ep` alias.
+Recognizable old machine state/cards block processing without overwriting them.
+Detection depends on the state and Story Card snapshots the host exposes;
+unavailable snapshots cannot prove an adventure is clean.
 
-```text
-LEP: Lilith Event Paradox — Configuration
-```
+The one editable card uses Triggers `__LEP_CONFIG_V1__` and Type
+`LEP — Configuration`. Do not alter those identities. User Entry/comments are
+retained. Exact duplicate sentinels or a wrong Type block safely. Settings are
+case-insensitive; blanks and # comments are ignored outside JSON strings.
+Last duplicate value wins; invalid last values use defaults. memoryBudget is
+clamped to 0..600. Unknown/malformed lines and invalid values are reported in
+`/lep status` and bounded debug logs. Only the first 16000 characters are parsed.
 
-For backward compatibility, legacy machine triggers/type identifiers may still retain the older Event Paradox wording.
+The actual generated default Entry is:
 
-Do not "clean them up" unless the engine version you are using explicitly says it is safe.
+```ini
+# LEP: LILITH EVENT PARADOX — CONFIGURATION
+# Edit values after =. Lines beginning with # are help comments.
+# Do not modify Triggers/Type. Run /lep help with a Do action.
 
-Default Entry:
-
-```text
+# --- ENGINE ---
+# true / false. false pauses LEP without erasing progress; read-only commands remain available.
 enabled = true
+
+# --- MEMORY ---
+# compact = chapter + authored context; character = relevant character facts too;
+# full = extended authored memories and optional journal behavior.
 memoryMode = compact
+# Approximate Context token allowance: 0..600, not an exact tokenizer.
+# 0 suppresses injection without deleting saved memories.
 memoryBudget = 120
+# true / false. Authored character-memory MIRROR cards, separate from world Auto-Cards.
+# Requires character or full memoryMode.
 autoCharacterCards = false
+# true / false. Bounded authored event journal mirror; requires full memoryMode.
 journalEnabled = false
+
+# --- INTEGRATIONS ---
+# Auto-Cards originally by LewdLeah.
+# true / false. Discover/create/update world cards; creator Character/Location registration works when false.
+# Enabling creates an informational STATUS card promptly; world cards require evidence and may be delayed.
 autoCardsEnabled = false
+# Inner Self originally by LewdLeah.
+# true / false. Optional NPC simulation; LEP events work without it.
+# Inner Self's own character/NPC settings remain separate.
 innerSelfEnabled = false
+
+# --- DIAGNOSTICS ---
+# true / false. Bounded scripting-console logs; /lep commands do not require debug.
 debug = false
 ```
 
-Important distinctions:
+Auto-Cards originally by LewdLeah. Inner Self originally by LewdLeah.
+Full original MIT notices and pinned source information are included in
+`THIRD_PARTY_NOTICES.txt` and `vendor/inner-self/`.
 
-- **Entity Registry / adapted Auto-Cards infrastructure** is bundled and available.
-- `autoCardsEnabled` controls automatic card discovery/creation/update behavior.
-- creator Character/Location Story Cards can still register with `autoCardsEnabled = false`.
-- `innerSelfEnabled` controls the optional bundled Inner Self integration.
-- Inner Self is not required for LEP events.
+When an ordinary Input, Context or successful Output hook observes enabled
+Auto-Cards, LEP synchronizes one informational companion. It does not require
+an entity candidate, a model response, a sidecar, cooldown expiry or an extra
+turn. Captured console cycles do not create maintenance work. Turning off
+Auto-Cards or pausing LEP retains the card and safely refreshes its status.
+
+Triggers: `__LEP_AUTOCARDS_STATUS_V1__`; Type: `LEP — Auto-Cards Status`.
+It is informational, **not another configuration card**. Editing its Entry
+never changes settings. Only its exact key/Type identity is refreshed; duplicate
+or foreign identities are left untouched and diagnosed. The status card is
+excluded from the Entity Registry, world-card counts, context and Inner Self
+history. Candidate names, creator variables, private anchors and sidecars are
+never included. Updates do not advance narrative counters or run events.
+
+Example generated immediately after enabling:
+
+```text
+# LEP — AUTO-CARDS STATUS
+# Informational only. Settings live in LEP Configuration.
+# Auto-Cards originally by LewdLeah; integrated into LEP: Lilith Event Paradox.
+
+Integration: enabled
+Activity: Observing; waiting for at least two mentions across distinct successful story outputs.
+Tracked candidates: 0
+Currently confirmed LEP-owned automatic cards: 0
+Last result: No creation attempt yet
+
+How it works:
+A likely entity needs at least two mentions across separate successful story outputs before consideration. Candidates, model compliance, cooldown, available Context room and card API readiness can delay or prevent creation/updates. Enabled does not guarantee a generated world card. Counts reflect the current available snapshot.
+
+To change activation: edit autoCardsEnabled in LEP Configuration, NOT this status card. Manual edits here never configure LEP and may be refreshed by the engine.
+```
+
+Activity distinguishes observing, repeated evidence awaiting an opportunity,
+awaiting a model response, cooldown, insufficient Context room, storage deferral,
+no usable result/confirmed write, disabled/paused and unavailable APIs. The last
+result separately records a confirmed creation/update. Candidate counts are
+bounded; owned counts require a currently matching card identity, Type, keys
+and content hash. An API-confirmed write can precede its visible snapshot.
+
+Two mentions must occur across distinct successful story outputs. A candidate
+is not a promise of a world card: classification, ownership conflicts, cooldown,
+Context room and host APIs can defer or prevent creation. A manually edited or
+missing owned card is not counted as currently confirmed. Status does not
+include general story turn counters, so unchanged hooks do not rewrite it.
+
+Missing APIs, exceptions and status collisions are isolated from event play.
+After an unconfirmed add with no visible snapshot, a bounded pending flag blocks
+repeat creation; LEP does not guess whether the external write succeeded.
+A status update with unchanged source/desired content is attempted once while
+unconfirmed; a new meaningful state or source revision allows another attempt.
+If the host never exposes the result, `/lep status` reports the limitation;
+resolve the host/API problem before retrying card operations. External Story
+Card writes have no universal Undo rollback guarantee. A deleted confirmed
+companion can be recreated only after its absence is observed safely.
+
+Current names: `state.lep`, `state.lepConsole`, `state.lepAutoCards`,
+`state.lepInnerSelf`; bounded card-write metadata is separate in `state.lepCards`.
+Memory/journal keys use `__LEP_CHARACTER_V1__` and `__LEP_JOURNAL_V1__`.
+The sidecar uses `[LEP_AUTOCARDS_…]` / `[/LEP_AUTOCARDS]`; world ownership uses
+`[LEP Auto-Cards …]` plus a content-checked revision. None are public author
+fields. Native `state.InnerSelf` and its upstream settings retain their names.
+
+Time Paradox, deadlines, new event semantics and Optimized Context support
+remain outside this release. v0.6 event semantics are unchanged.
+Offline tests cannot verify live model compliance, UI behavior, host snapshots
+or Undo semantics. See `docs/MANUAL_TEST_CHECKLIST_v0.6.1.txt` and the
+implementation report for actual validation results.
+
 
 ---
 
@@ -974,25 +1071,25 @@ This repository separates the approachable material from the document that knows
 ## Start here
 
 - `README.md` — you are here. Congratulations.
-- `AuthorToolKit/EventParadox_Events_Creator.txt` — practical manual creator guide.
+- `AuthorToolKit/LEP_Events_Creator.txt` — practical manual creator guide.
 
 ## Deep technical reference
 
-- `docs/EventParadox_Technical_Reference.txt`
+- `docs/LEP_Technical_Reference.txt`
 
-The v0.6 technical reference should be treated as the exact source for schema limits, scheduler semantics, pending-state behavior, validation, Retry handling, timeline details and integration rules.
+The v0.6.1 technical reference should be treated as the exact source for schema limits, scheduler semantics, pending-state behavior, validation, Retry handling, timeline details and integration rules.
 
 ## LEP Author Toolkit
 
-The repository may retain legacy `EventParadox_*` filenames for compatibility during the branding transition.
+v0.6.1 uses only the new LEP identifiers. Old saved adventures require their old runtime; use a fresh adventure for this release.
 
 Look in `AuthorToolKit/` for:
 
-- `EventParadox_AI_Authoring_Spec.txt`
-- `EventParadox_Author_Workbook.txt`
-- `EventParadox_Author_Toolkit_Examples.txt`
-- `EventParadox_Skill_Builder_Guide.txt`
-- `EP_Builder_Skill.zip`
+- `LEP_AI_Authoring_Spec.txt`
+- `LEP_Author_Workbook.txt`
+- `LEP_Author_Toolkit_Examples.txt`
+- `LEP_Skill_Builder_Guide.txt`
+- `LEP_Builder_Skill.zip`
 
 Public-facing documentation may refer to these collectively as the **LEP Author Toolkit** and **LEP Builder**.
 
@@ -1011,17 +1108,17 @@ node tests/run-tests.js
 You can also syntax-check the runtime files with Node:
 
 ```bash
-node --check EP/Library.js
-node --check EP/Input.js
-node --check EP/Context.js
-node --check EP/Output.js
+node --check LEP/Library.js
+node --check LEP/Input.js
+node --check LEP/Context.js
+node --check LEP/Output.js
 node --check docs/events.example.js
 node --check tests/run-tests.js
 ```
 
 The test suite is dependency-free.
 
-v0.6 testing should cover both legacy and new behavior, including:
+v0.6.1 testing should cover both legacy and new behavior, including:
 
 - v0.5-compatible normal events;
 - Milestone arming/delivery;
@@ -1033,7 +1130,7 @@ v0.6 testing should cover both legacy and new behavior, including:
 - Retry safety;
 - Inner Self enabled/disabled;
 - Auto-Cards ownership;
-- configuration migration;
+- same-namespace schema defaults and explicit rejection of legacy installations;
 - creator/debugging commands.
 
 Offline mocks are not a substitute for live AI Dungeon testing.
@@ -1058,8 +1155,8 @@ Useful details:
 - relevant event/chapter definitions;
 - what you expected;
 - what happened instead;
-- `/ep status`;
-- `/ep inspect = event EVENT_ID` when relevant;
+- `/lep status`;
+- `/lep inspect = event EVENT_ID` when relevant;
 - whether the event was Normal, Milestone, Silent, Chapter End or Queued;
 - whether `exclusiveGroup` was involved;
 - whether Retry/Undo was involved;
@@ -1131,28 +1228,11 @@ Mostly because I'd like to see what you made.
 
 ---
 
-# Branding & compatibility note
+# Breaking namespace release
 
-Starting with v0.6, the public project name is:
-
-> **LEP: Lilith Event Paradox**
-
-The older **Event Paradox** name remains visible in some legacy filenames, state keys and machine-facing identifiers for compatibility.
-
-That is intentional.
-
-In particular, do not assume these are obsolete:
-
-```text
-EP_START
-EP_CHAPTERS
-EP_EVENTS
-/ep
-```
-
-A rebrand should make the project prettier.
-
-It should not make existing scenarios stop working.
+Use a **new adventure** for v0.6.1. Keep the <=v0.6 runtime in old adventures.
+There is no automatic state/card migration and no old command or author API alias.
+The guard blocks recognized legacy machine identities rather than resetting progress.
 
 ---
 
@@ -1162,7 +1242,7 @@ LEP is still built around one simple idea:
 
 > **Creators decide which story beats matter. The AI is free to improvise between them.**
 
-v0.6 just gives those beats more vocabulary.
+v0.6.1 just gives those beats more vocabulary.
 
 Some are ordinary.
 
@@ -1179,3 +1259,18 @@ Some exclude each other permanently.
 And somewhere in all of that, the AI is still perfectly free to decide that a side character needs a suspiciously detailed sandwich.
 
 Enjoy.
+
+## v0.6.1 validation and release files
+
+Offline: **399/399** runtime tests and **10/10** JavaScript syntax checks.
+Live AI Dungeon checks have not been run.
+
+- [Implementation report](docs/IMPLEMENTATION_REPORT_v0.6.1.md)
+- [Release notes](docs/RELEASE_NOTES_v0.6.1.txt)
+- [Live checklist](docs/MANUAL_TEST_CHECKLIST_v0.6.1.txt)
+
+```sh
+node tests/run-tests.js
+python3 tools/build-skill.py
+python3 tests/check-distribution.py
+```

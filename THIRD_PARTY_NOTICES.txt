@@ -1,4 +1,4 @@
-Event Paradox v0.3 — integrated Auto-Cards adaptation
+LEP v0.3 — integrated Auto-Cards adaptation
 
 Auto-Cards by LewdLeah
 https://github.com/LewdLeah/Auto-Cards
@@ -40,7 +40,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-Event Paradox v0.5 — optional modified Inner Self integration
+LEP v0.5 — optional modified Inner Self integration
 
 Inner Self by LewdLeah
 Official repository: https://github.com/LewdLeah/Inner-Self
@@ -57,10 +57,10 @@ are intended to remain upstream-compatible.
 
 Compatibility changes scope upstream globals, prefer explicit hook selection,
 rescan new cards rather than assume a return shape, isolate console/paused cycles
-and filter their history, and separate guide/debug/thought metadata from EP
+and filter their history, and separate guide/debug/thought metadata from LEP
 narrative. Long output bypass is removed so thought instructions are still
-parsed. EP renders authored prose last. Thought labels/debug screens accompany
-only normal model prose, never authored EP scenes. Source hashes, modifications,
+parsed. LEP renders authored prose last. Thought labels/debug screens accompany
+only normal model prose, never authored LEP scenes. Source hashes, modifications,
 and the full patch are recorded in vendor/inner-self. The complete license below
 also accompanies the bundled code and vendor/inner-self/LICENSE.
 
@@ -86,6 +86,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-LEP v0.6 retains the v0.5 Inner Self integration; only LEP-owned guide/comment
+LEP v0.6.1 retains the v0.5 Inner Self integration; only LEP-owned guide/comment
 branding changed. Upstream project names, pinned revision and both complete
 licenses remain unchanged.
