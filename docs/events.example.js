@@ -1,13 +1,13 @@
-/* LEP: Lilith Event Paradox v0.6 — The Missing Stage Key, v0.4-compatible fixture.
+/* LEP: Lilith Event Paradox v0.6.1 — The Missing Stage Key, v0.4-compatible fixture.
  * AI Dungeon does not load this file. Library.js already contains these definitions.
  * To restore them, copy the entire BEGIN/END block into Library, including markers.
- * Start a NEW adventure after changing EP_START; existing progress is preserved.
- * Use /ep set to choose backstage, office or a registered location; see README.txt.
+ * Start a NEW adventure after changing LEP_START; existing progress is preserved.
+ * Use /lep set to choose backstage, office or a registered location; see README.txt.
  * Based on the supplied v0.3 sample, with v0.4 chapters, time advances and an anchor.
  */
 // BEGIN EVENT DEFINITIONS — EDIT HERE
 
-var EP_START = {
+var LEP_START = {
   chapter: "preparation",
   variables: {
     key: {
@@ -38,7 +38,7 @@ var EP_START = {
   }
 };
 
-var EP_CHAPTERS = {
+var LEP_CHAPTERS = {
   preparation: {
     title: "Chapter 1 — Preparation",
     description: "Maya, Julia and the player are preparing the school hall. The stage key has not yet been reported missing.",
@@ -74,7 +74,7 @@ var EP_CHAPTERS = {
   }
 };
 
-var EP_EVENTS = [
+var LEP_EVENTS = [
 
   {
     id: "prep_checklist",

@@ -1,0 +1,22 @@
+LEP: Lilith Event Paradox v0.6.1 — Polish & Consolidation
+=======================================================
+- Eight-setting configuration Entry now has inline help, bounds/dependencies,
+  and visible credits to LewdLeah beside Auto-Cards and Inner Self.
+- Auto-Cards gets one script-created informational status companion, with
+  observable aggregate counts, meaningful outcomes and no gameplay mutations.
+- Complete first-party LEP author/console/state/card/protocol namespace rename.
+  EP/ is now LEP/. This is intentionally breaking: USE A FRESH ADVENTURE.
+  Existing <=v0.6 adventures must retain their older runtime. No migration,
+  parallel progress trees or permanent old aliases. Recognized legacy data
+  blocks initialization/mutation without overwriting old progress/cards.
+- Verified config duplicate/wrong-Type selection now fails closed. Unconfirmed
+  world-card updates no longer advance ownership as if the write succeeded.
+- Config is parsed once per Context hook instead of twice (operation-count
+  probe). Ownership rescans remain live. Unchanged status has zero extra writes.
+- Restored missing published test fixtures/vendor provenance and test paths;
+  retained newer scheduler tests. Consolidated one canonical AuthorToolKit and
+  rebuilt LEP_Builder_Skill.zip with resolved canonical references.
+- v0.6 scheduler, exact prose, silent isolation, groups, timeline and optional
+  Inner Self behavior remain covered. Original licenses/pins are unchanged.
+- Host snapshots and model/Undo behavior still require live AI Dungeon checks.
+See IMPLEMENTATION_REPORT_v0.6.1.md for full evidence, samples and limits.
