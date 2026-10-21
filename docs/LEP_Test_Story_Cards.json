@@ -1,0 +1,50 @@
+[
+  {
+    "keys": "Maya",
+    "value": "Maya is a student organizing the school festival stage. Practical, friendly, organized, and easily stressed by last-minute problems. She relies on the player and Julia for help and keeps track of the stage key and opening checklist.",
+    "type": "Character",
+    "title": "Maya",
+    "description": "Festival organizer. Creator Character card used to test v0.3 entity registration.",
+    "useForCharacterCreator": false
+  },
+  {
+    "keys": "Julia",
+    "value": "Julia is a student helping with school festival decorations and props. Playful, resourceful, and quick with a joke. She works alongside Maya and the player and often turns stressful problems into something funny.",
+    "type": "Character",
+    "title": "Julia",
+    "description": "Decorations and props. Creator Character card used to test v0.3 entity registration.",
+    "useForCharacterCreator": false
+  },
+  {
+    "keys": "School Hall",
+    "value": "The School Hall is the main festival venue. It contains the decorated stage, rows of chairs, paper decorations, lighting equipment, and tables for food and activities. The stage doors require a brass key.",
+    "type": "Location",
+    "title": "School Hall",
+    "description": "Creator Location card used to test v0.3 entity registration.",
+    "useForCharacterCreator": false
+  },
+  {
+    "keys": "School Office",
+    "value": "The School Office is a small administrative room near the main corridor. Its lost-and-found drawer collects objects handed in by students and staff.",
+    "type": "Location",
+    "title": "School Office",
+    "description": "Creator Location card and one possible key-search destination.",
+    "useForCharacterCreator": false
+  },
+  {
+    "keys": "Backstage Area,backstage",
+    "value": "The Backstage Area sits behind the school hall stage curtains. Boxes of props, paper decorations, spare cables, and festival materials are stacked there, making small objects easy to overlook.",
+    "type": "Location",
+    "title": "Backstage Area",
+    "description": "Creator Location card and one possible key-search destination.",
+    "useForCharacterCreator": false
+  },
+  {
+    "keys": "__LEP_CONFIG_V1__",
+    "value": "# LEP — Configuration\n# Edit this Entry, not Notes. Keep the Triggers unchanged.\n# To debug: set debug = true, then type /lep help in a Do action for all commands.\n# v0.3 test scenario: automatic card creation is intentionally enabled.\nenabled = true\nmemoryMode = compact\nmemoryBudget = 120\nautoCharacterCards = false\njournalEnabled = false\nautoCardsEnabled = true\ndebug = false\n",
+    "type": "LEP — Configuration",
+    "title": "LEP — Configuration",
+    "description": "LEP v0.3 test configuration. Auto-Cards is intentionally enabled for this scenario.",
+    "useForCharacterCreator": false
+  }
+]

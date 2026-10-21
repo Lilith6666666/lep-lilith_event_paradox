@@ -1,0 +1,29 @@
+LEP v0.6.1 — live AI Dungeon checklist
+NOT RUN LIVE. Offline VM coverage is separate.
+
+[ ] 1. Create a fresh scenario/adventure; paste the four LEP/ scripts.
+[ ] 2. Confirm __LEP_CONFIG_V1__, Type LEP — Configuration, eight inline-help settings.
+[ ] 3. Check both LewdLeah credits beside Auto-Cards and Inner Self.
+[ ] 4. Enable autoCardsEnabled; on next safe hook status appears before any generated world card.
+[ ] 5. Check zero-count observing status; enabling alone must not claim successful creation.
+[ ] 6. Mention one entity in two separate successful story outputs; observe eligibility transition.
+[ ] 7. Obtain a valid model sidecar and confirm world-card creation/count if model/API cooperate.
+[ ] 8. Try missing/null/malformed sidecar and insufficient Context headroom; check truthful status.
+[ ] 9. Toggle Auto-Cards off/on; retain one companion and existing world cards.
+[ ] 10. Edit status Entry with enabled/autoCardsEnabled values; verify they do not configure LEP.
+[ ] 11. Enable Inner Self; confirm original Auto-Cards installer/config and /AC engine remain absent.
+[ ] 12. Use /lep help/status/get/vars/inspect/set/time/timeSkip as Do actions; include blank/stop output.
+[ ] 13. Verify /ep is ordinary text rather than an active control alias.
+[ ] 14. Exercise normal append/replace, milestone, queued, silent and chapterEnd definitions.
+[ ] 15. Exercise groups, visible+silent same turn, retained/restored Retry and Undo branches.
+[ ] 16. Confirm no sidecar, console metadata, status Entry or private silent values enter story lore.
+[ ] 17. Run ordinary play with both integrations disabled.
+[ ] 18. Run Auto-Cards and Inner Self together; preserve exact authored event text.
+[ ] 19. Attach to a disposable legacy-data adventure; guard must block without reset/duplicate cards.
+[ ] 20. Keep real old adventures on their old runtime; repository rename must not touch them.
+[ ] 21. If host permits, remove Story Card APIs; events remain safe and diagnostics explain limitation.
+[ ] 22. Check Context and Inner Self history: status text is excluded and not a Brain/world entity.
+[ ] 23. Exercise index-0 cards, false API returns, delayed snapshots, duplicate/wrong-Type collisions; resolve host errors safely.
+
+Record host version, model, observed snapshots, Retry/Undo state and any failure.
+Do not treat offline mocks as proof of host rollback or model compliance.

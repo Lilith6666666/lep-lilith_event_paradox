@@ -1,0 +1,34 @@
+# LEP: LILITH EVENT PARADOX — CONFIGURATION
+# Edit values after =. Lines beginning with # are help comments.
+# Do not modify Triggers/Type. Run /lep help with a Do action.
+
+# --- ENGINE ---
+# true / false. false pauses LEP without erasing progress; read-only commands remain available.
+enabled = true
+
+# --- MEMORY ---
+# compact = chapter + authored context; character = relevant character facts too;
+# full = extended authored memories and optional journal behavior.
+memoryMode = compact
+# Approximate Context token allowance: 0..600, not an exact tokenizer.
+# 0 suppresses injection without deleting saved memories.
+memoryBudget = 120
+# true / false. Authored character-memory MIRROR cards, separate from world Auto-Cards.
+# Requires character or full memoryMode.
+autoCharacterCards = false
+# true / false. Bounded authored event journal mirror; requires full memoryMode.
+journalEnabled = false
+
+# --- INTEGRATIONS ---
+# Auto-Cards originally by LewdLeah.
+# true / false. Discover/create/update world cards; creator Character/Location registration works when false.
+# Enabling creates an informational STATUS card promptly; world cards require evidence and may be delayed.
+autoCardsEnabled = false
+# Inner Self originally by LewdLeah.
+# true / false. Optional NPC simulation; LEP events work without it.
+# Inner Self's own character/NPC settings remain separate.
+innerSelfEnabled = false
+
+# --- DIAGNOSTICS ---
+# true / false. Bounded scripting-console logs; /lep commands do not require debug.
+debug = false
